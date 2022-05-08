@@ -6,7 +6,7 @@ namespace CSTest
 	public class Trade : ITrade
 	{
 		public double Value { get; set; }
-		public string ClientSectore { get; set; }
+		public string ClientSector { get; set; }
         
     }
 	class Program
@@ -14,15 +14,18 @@ namespace CSTest
 
         static void Main(string[] args)
         {
-			var Trade1 = new Trade { Value = 2000000, ClientSectore = "Private" };
-			var Trade2 = new Trade { Value = 400000, ClientSectore = "Public" };
-			var Trade3 = new Trade { Value = 500000, ClientSectore = "Public" };
-			var Trade4 = new Trade { Value = 3000000, ClientSectore = "Public" };
+			//Here you can provide any number of inputs for the program
+			var Trade1 = new Trade { Value = 2000000, ClientSector = "Private" };
+			var Trade2 = new Trade { Value = 400000, ClientSector = "Public" };
+			var Trade3 = new Trade { Value = 500000, ClientSector = "Public" };
+			var Trade4 = new Trade { Value = 3000000, ClientSector = "Public" };
+
 			var portfolio = new List<ITrade> { Trade1, Trade2, Trade3, Trade4 };
 			var tradeCategories = GetRiskType(portfolio);
 
 			tradeCategories.ForEach(tradeCategory => Console.WriteLine(tradeCategory));
         }
+		//This function will cacluate risk type on the basis of predefined category rules
 		public static List<string> GetRiskType(List<ITrade> trades)
 		{
 			var result = new List<string>();
@@ -34,13 +37,13 @@ namespace CSTest
 					switch (rule.operatorType)
 					{
 						case "Greater Than":
-							if (trade.Value > rule.threshold && trade.ClientSectore == rule.sector)
+							if (trade.Value > rule.threshold && trade.ClientSector == rule.sector)
 							{
 								result.Add(rule.riskType);
 							}
 							break;
 						case "Less Than":
-							if (trade.Value < rule.threshold && trade.ClientSectore == rule.sector)
+							if (trade.Value < rule.threshold && trade.ClientSector == rule.sector)
 							{
 								result.Add(rule.riskType);
 							}

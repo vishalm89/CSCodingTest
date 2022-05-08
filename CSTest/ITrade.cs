@@ -7,6 +7,6 @@ namespace CSTest
     interface ITrade
     {
         double Value { get; }
-        string ClientSectore { get; }
+        string ClientSector { get; }
     }
 }
